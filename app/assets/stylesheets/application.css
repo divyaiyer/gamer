@@ -1,0 +1,40 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+#plays {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+}
+
+#plays td, #plays th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  width:10%;
+}
+
+#plays tr:nth-child(even){background-color: #f2f2f2;}
+
+#plays tr:hover {background-color: #ddd;  width:90%;}
+
+#plays th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: darkkhaki;
+  color: white;
+}
+body {
+  background-color:lightblue;
+}

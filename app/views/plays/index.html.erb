@@ -1,0 +1,44 @@
+<script type="text/javascript">
+var i = 10;
+(function timer(){
+    if (--i < 1) i=10;
+    setTimeout(function(){
+        imgRandom();
+        document.getElementsByTagName('h1')[0].innerHTML = i ;
+        timer();
+    }, 1000);
+})();
+
+
+function call_update(id,parameter) { 
+  var i = document.getElementsByTagName('h1')[0].innerHTML;
+  var img_url = document.getElementById("myPicture").src
+  Rails.ajax({
+      url: '/plays/'+id+'?timer='+i+'&key='+parameter+'&img_url='+img_url,
+      type: 'put',
+      dataType: 'script'
+    });
+};
+
+function imgRandom() { 
+  const  arr = JSON.parse('<%= raw @images_hash.values.map(&:album_image_url).to_json %>'); 
+  var randomElement = Math.floor(Math.random() * arr.length);
+  document.getElementById("myPicture").src = arr[randomElement];
+};
+</script>
+<div>
+<p id="notice"><%= notice %></p>
+<div><%= link_to 'Home', '/' %></div>
+<h1>10</h1>
+<div ><%=image_tag(@img.album_image_url,size: "100x100",id: 'myPicture') if !@img.nil?%></div>
+<br/>
+<div><%=button_tag 'PLAY',:onclick =>"call_update(#{@img.id if @img},#{@random_key})"%></div>
+</div>
+<hr/>
+
+<div id="play"> 
+  <%=render partial: 'plays/plays'%> 
+</div>
+
+<br>
+
